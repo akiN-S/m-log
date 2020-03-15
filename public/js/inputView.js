@@ -1,13 +1,14 @@
 var inputTime = new Date(); // getting current date and time
+var timestampStrElm;
+var timestampElm;
 
 window.onload = function () {
+    timestampStrElm = document.getElementById("timestampStr");
+    timestampElm = document.getElementById("timestamp");
     setInputTime();
 };
 
 function setInputTime(){
-    var timestampStrElm = document.getElementById("timestampStr");
-    var timestampElm = document.getElementById("timestamp");
-
     timestampStrElm.value = convertDateToStr(inputTime);
     timestampElm.value = Math.floor(inputTime.getTime() / 1000); //getting Unixtime (seconds)
 }
@@ -28,10 +29,13 @@ function convertDateToStr(date){
 function onclickUpCount(){
     inputTime.setMinutes(inputTime.getMinutes() + 1);
     setInputTime();
+    timestampStrElm.focus();
 
 }
 
 function onclickDownCount(){
     inputTime.setMinutes(inputTime.getMinutes() - 1);
     setInputTime();
+    timestampStrElm.focus();
+
 }
