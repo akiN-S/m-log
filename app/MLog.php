@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class MLog extends Model
 {
     //
-    // protected $fillable = ['timestamp', 'currency', 'price', 'method', 'statement', 'store', 'branch', "location" ]; 
-    protected $fillable = ['timestamp', 'currency', 'price' ]; 
+    protected $fillable = ['timestamp', 'currency', 'price', 'method', 'statement', 'store', 'storeBranch', "location" ]; 
+    // protected $fillable = ['timestampStr', 'timestamp', 'currency', 'price' ]; 
 }

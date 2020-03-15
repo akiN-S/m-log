@@ -24,11 +24,13 @@ class MLogController extends Controller
       
       //入力チェック
       $this->validate($request, [
-        'timestamp' => 'required|max:5|alpha',
-        'currency' => 'required|max:5|alpha',
-        'price' => 'required|max:5|alpha',
+        'timestampStr' => 'required',
+        'currency' => 'required|max:5',
+        'price' => 'required|max:5',
       ]);
       
+      // var_dump($mLog); //debug
+
       //セッションに保存
       $request->session()->put('mLog', $mLog);
       

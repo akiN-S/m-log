@@ -99,8 +99,9 @@
 
             <div class="content">
                 <form method="GET" action="{{action('HomeController@index')}}">
+                    
                     @csrf
-                    timestamp:{{$mLog->timestamp}}<br />
+                    timestamp:{{$mLog->timestampStr}}<br />
                     currency:{{$mLog->currency}}<br />
                     price:{{$mLog->price}}<br />
                     <input type="submit" value="送信">
