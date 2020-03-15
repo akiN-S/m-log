@@ -14,11 +14,11 @@ class MLogController extends Controller
       $this->middleware('auth');
     }
     
-    public function input() {
-      return view('input');
-    }
+    // public function input() {
+    //   return view('input');
+    // }
     
-    public function send(Request $request) {
+    public function input(Request $request) {
       //入力値の取得
       $mLog = new MLog($request->all());
       

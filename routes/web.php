@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('input');
 
 // Auth::routes();
 
@@ -32,4 +32,4 @@ Route::get('/login/{social}', 'Auth\LoginController@socialLogin')->where('social
 //コールバック用
 Route::get('/login/{social}/callback', 'Auth\LoginController@handleProviderCallback')->where('social', 'facebook');
 
-Route::post('/MLog/send'  , 'MLogController@send');
+Route::post('/MLog/input'  , 'MLogController@input');
