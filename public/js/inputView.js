@@ -1,17 +1,32 @@
 var inputTime = new Date(); // getting current date and time
 var timestampStrElm;
 var timestampElm;
+var storeElm;
+var storeBranchElm;
+var locationElm;
+
 
 window.onload = function () {
     timestampStrElm = document.getElementById("timestampStr");
     timestampElm = document.getElementById("timestamp");
-    setInputTime();
+    storeElm = document.getElementById("store");
+    storeBranchElm = document.getElementById("storeBranch");
+    locationElm = document.getElementById("location");
+
+    setInputTime(); // setting up current time
+    navigator.geolocation.getCurrentPosition(setInputLocation); // setting up current location
 };
 
 function setInputTime(){
     timestampStrElm.value = convertDateToStr(inputTime);
     timestampElm.value = Math.floor(inputTime.getTime() / 1000); //getting Unixtime (seconds)
 }
+
+function setInputLocation(position){
+    locationElm.value = position.coords.latitude + "," + position.coords.longitude ; //getting geolocation
+}
+
+
 
 function convertDateToStr(date){
     const engMonthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];

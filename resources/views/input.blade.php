@@ -104,7 +104,17 @@
 
                         <div class="form-group row">
                             <label for="location" class="col-md-4 col-form-label text-md-right">Location</label>
-
+                            
+                            <div class="col-md-8">
+                                <input id="location" type="text" class="form-control @error('location') is-invalid @enderror" name="location" value="{{ old('location') }}" >
+                                    
+                                    @error('location')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group row mb-0">
