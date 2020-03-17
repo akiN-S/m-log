@@ -15,7 +15,7 @@
                         <div class="form-group row">
                             <label for="timestampStr" class="col-md-4 col-12 col-form-label text-md-right">Date and Time</label>
 
-                            <div class="col-md-4 col-8">
+                            <div class="col-md-4 col-7">
                                 <input id="timestampStr" type="text" class="form-control @error('timestampStr') is-invalid @enderror" name="timestampStr" value="{{ old('timestampStr') }}" required>
                                 
                                 @error('timestampStr')
@@ -25,7 +25,7 @@
                                 @enderror
                             </div>
 
-                            <div class="col-md-2 col-4 form-inline">
+                            <div class="col-md-2 col-5 form-inline">
                                 <button type="button" class="btn btn-secondary" onclick="onclickUpCount()">△</button>
                                 <button type="button" class="btn btn-secondary" onclick="onclickDownCount()">▽</button>
                             </div>
@@ -36,7 +36,7 @@
                         <div class="form-group row">
                             <label for="price" class="col-md-4 col-12 col-form-label text-md-right">Price</label>
 
-                            <div class="col-md-2 col-4">
+                            <div class="col-md-2 col-6">
                                 <input id="price" type="text" class="form-control @error('price') is-invalid @enderror" name="price" required>
 
                                 @error('price')
@@ -46,7 +46,7 @@
                                 @enderror
                             </div>
 
-                            <div class="col-md-2 col-4">
+                            <div class="col-md-2 col-3">
                                 <select name="currency" class=" custom-select" required>
                                     @foreach(config('input.currency') as $key => $currency)
                                     <option value="{{ $key }}" class="text-sm-right">{{ $currency['label'] }}</option>
@@ -54,7 +54,7 @@
                                 </select>
                             </div>
 
-                            <div class="col-md-2 col-4">
+                            <div class="col-md-2 col-3">
                                 <select name="method" class=" custom-select" required>
                                     @foreach(config('input.currency') as $key => $currency)
                                     <option value="{{ $key }}" class="text-sm-right">{{ $currency['label'] }}</option>
