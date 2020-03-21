@@ -1,6 +1,5 @@
 @extends('layouts.app')
-<!-- <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyDD1qE1aMX7rRZwsc3saXQThtQngeK_SNU&libraries=places" charset="utf-8"></script> -->
-<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyDD1qE1aMX7rRZwsc3saXQThtQngeK_SNU&libraries=places" charset="utf-8"></script>
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?key={{ env('MIX_GOOGLE_MAP_API', '') }}&libraries=places" charset="utf-8"></script>
 
 <script src="{{ asset('/js/inputView/input.js') }}"></script>
 <script src="{{ asset('/js/inputView/map.js') }}"></script>
