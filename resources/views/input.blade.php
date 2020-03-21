@@ -1,10 +1,16 @@
 @extends('layouts.app')
-<script src="{{ asset('/js/inputView.js') }}"></script>
+<!-- <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyDD1qE1aMX7rRZwsc3saXQThtQngeK_SNU&libraries=places" charset="utf-8"></script> -->
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyDD1qE1aMX7rRZwsc3saXQThtQngeK_SNU&libraries=places" charset="utf-8"></script>
+
+<script src="{{ asset('/js/inputView/input.js') }}"></script>
+<script src="{{ asset('/js/inputView/map.js') }}"></script>
+
 
 @section('content')
+
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-mcd-8">
             <div class="card">
                 <div class="card-header">Input</div>
 
@@ -122,12 +128,22 @@
                                 <button type="submit" class="btn btn-primary">Input!</button>
                             </div>
                         </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-10">
+                            <!-- fix this style later -->
+                                <br />
+                                <div id="map_canvas" style="height: 300px;"></div> 
 
+                            </div>
+                        </div>
                     </form>
+
 
                 </div>
             </div>
         </div>
     </div>
+
+
 </div>
 @endsection

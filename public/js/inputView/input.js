@@ -23,7 +23,10 @@ function setInputTime(){
 }
 
 function setInputLocation(position){
-    locationElm.value = position.coords.latitude + "," + position.coords.longitude ; //getting geolocation
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude
+    locationElm.value = latitude + "," + longitude; //getting geolocation
+    initializeMap(latitude, longitude); // a function in map.js to draw a map
 }
 
 
