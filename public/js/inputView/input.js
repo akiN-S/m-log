@@ -47,13 +47,11 @@ function convertDateToStr(date){
 function onclickUpCount(){
     inputTime.setMinutes(inputTime.getMinutes() + 1);
     setInputTime();
-    timestampStrElm.focus();
 
 }
 
 function onclickDownCount(){
     inputTime.setMinutes(inputTime.getMinutes() - 1);
     setInputTime();
-    timestampStrElm.focus();
 
 }
