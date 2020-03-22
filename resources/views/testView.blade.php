@@ -101,12 +101,17 @@
                 <form method="GET" action="{{action('HomeController@index')}}">
                     
                     @csrf
-                    timestamp:{{$mLog->timestampStr}}<br />
-                    currency:{{$mLog->currency}}<br />
+                    timestamp:{{$mLog->timestamp}}<br />
                     price:{{$mLog->price}}<br />
+                    currency:{{$mLog->currency}}<br />
+                    currency:{{$mLog->method}}<br />
+                    statement:{{$mLog->statement}}<br />
+                    place:{{$mLog->place}}<br />
+                    address:{{$mLog->address}}<br />
+                    loaction:{{$mLog->location}}<br />
                     <input type="submit" value="送信">
                 </form>
-
+                
             </div>
 
         </div>

@@ -29,7 +29,7 @@ class MLogController extends Controller
         'price' => 'required|max:5',
       ]);
       
-      // var_dump($mLog); //debug
+      var_dump($mLog); //debug
 
       //セッションに保存
       $request->session()->put('mLog', $mLog);

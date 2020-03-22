@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<script type="text/javascript" src="https://maps.google.com/maps/api/js?key={{ env('MIX_GOOGLE_MAP_API', '') }}&libraries=places" charset="utf-8"></script>
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?key={{ env('MIX_GOOGLE_MAP_API', '') }}&libraries=places&language=en" charset="utf-8"></script>
 
 <script src="{{ asset('/js/inputView/input.js') }}"></script>
 <script src="{{ asset('/js/inputView/map.js') }}"></script>
@@ -9,7 +9,7 @@
 
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-mcd-8">
+        <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Input</div>
 
@@ -80,32 +80,33 @@
                                     </span>
                                 @enderror
                             </div>
-
-                            
                         </div>
                         
                         <div class="form-group row">
-                            <label for="store" class="col-md-4 col-12 col-form-label text-md-right">Store</label>
+                            <label for="place" class="col-md-4 col-12 col-form-label text-md-right">Place</label>
 
-                            <div class="col-md-3 col-6">
-                                <input id="store" type="text" class="form-control @error('store') is-invalid @enderror" name="store" value="{{ old('store') }}" >
+                            <div class="col-md-6 col-12">
+                                <input id="place" type="text" class="form-control @error('place') is-invalid @enderror" name="place" value="{{ old('place') }}" >
                                 
-                                @error('store')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="col-md-3 col-6">
-                                <input id="storeBranch" type="text" class="form-control @error('storeBranch') is-invalid @enderror" name="storeBranch" value="{{ old('storeBranch') }}" >
-                                
-                                @error('storeBranch')
+                                @error('place')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                         </div>
+                        
+                        <div class="form-group row">
+                            <label for="address" class="col-md-4 col-12 col-form-label text-md-right">Address</label>
+    
+                            <div class="col-md-8 col-12">
+                                <div id="displayedAddress">
+                                </div>
+                                <input id="address" name="address" type="hidden" value="">
+                            </div>
+
+                        </div>
+
 
                         <div class="form-group row">
                             <label for="location" class="col-md-4 col-12 col-form-label text-md-right">Location</label>
@@ -118,21 +119,12 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                </div>
                             </div>
                         </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4 col-8 offset-1">
                                 <button type="submit" class="btn btn-primary">Input!</button>
-                            </div>
-                        </div>
-                        <div class="row justify-content-center">
-                            <div class="col-md-10">
-                            <!-- fix this style later -->
-                                <br />
-                                <div id="map_canvas" style="height: 300px;"></div> 
-
                             </div>
                         </div>
                     </form>

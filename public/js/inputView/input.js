@@ -1,20 +1,26 @@
 var inputTime = new Date(); // getting current date and time
 var timestampStrElm;
 var timestampElm;
-var storeElm;
-var storeBranchElm;
+var placeElm;
+var addressElm;
+var displayedAddressElm;
 var locationElm;
 
 
 window.onload = function () {
     timestampStrElm = document.getElementById("timestampStr");
     timestampElm = document.getElementById("timestamp");
-    storeElm = document.getElementById("store");
-    storeBranchElm = document.getElementById("storeBranch");
+    placeElm = document.getElementById("place");
+    addressElm = document.getElementById("address");
+    displayedAddressElm = document.getElementById("displayedAddress");
     locationElm = document.getElementById("location");
 
     setInputTime(); // setting up current time
-    navigator.geolocation.getCurrentPosition(setInputLocation); // setting up current location
+    navigator.geolocation.getCurrentPosition(function(position){
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        setInputLocation(latitude, longitude); // setting up current location
+    });
 };
 
 function setInputTime(){
@@ -22,9 +28,16 @@ function setInputTime(){
     timestampElm.value = Math.floor(inputTime.getTime() / 1000); //getting Unixtime (seconds)
 }
 
-function setInputLocation(position){
-    var latitude = position.coords.latitude;
-    var longitude = position.coords.longitude
+function setInputPlace(name){
+    placeElm.value = name;
+}
+
+function setInputAddress(address){
+    displayedAddressElm.innerHTML = address;
+    addressElm.value = address;
+}
+
+function setInputLocation(latitude, longitude){
     locationElm.value = latitude + "," + longitude; //getting geolocation
     initializeMap(latitude, longitude); // a function in map.js to draw a map
 }
