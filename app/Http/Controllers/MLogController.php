@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Auth;
 use App\MLog;
 
 class MLogController extends Controller
@@ -20,7 +20,7 @@ class MLogController extends Controller
     
     public function input(Request $request) {
       //入力値の取得
-      $mLog = new MLog($request->all());
+      $mLogReq = new MLog($request->all());
       
       //入力チェック
       $this->validate($request, [
@@ -29,13 +29,26 @@ class MLogController extends Controller
         'price' => 'required|max:5',
       ]);
       
-      var_dump($mLog); //debug
+      // var_dump($mLog); //debug
 
-      //セッションに保存
-      $request->session()->put('mLog', $mLog);
-      
+      $mLog = new MLog;
+      $mLog->userId = Auth::id();
+      $mLog->currency = $request->currency;
+      // $mLog->usedTime = $request->usedTime; //TBC
+      $mLog->price = $request->price;
+      $mLog->methodId = $request->method; // TBC
+      $mLog->statement = $request->statement;
+      $mLog->place = $request->place;
+      $mLog->address = $request->address;
+      $mLog->location = $request->location;
+      $mLog-> save();
+
+      $mLogList = MLog::orderBy('created_at', 'asc')->get();
+
       //ビューの表示
-      return view('testView', compact('mLog'));
+      // return view('testView', compact('mLog'));
+      return view('testView', ['list' => $mLogList]);
+
     }
     
     public function update(Request $request) {
@@ -51,5 +64,10 @@ class MLogController extends Controller
     
     public function complete(Request $request) {
       return view('complete');
+    }
+
+    public function list(Request $request) {
+
+      return view('list');
     }
 }

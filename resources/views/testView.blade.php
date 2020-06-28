@@ -98,20 +98,16 @@
             @endif
 
             <div class="content">
-                <form method="GET" action="{{action('HomeController@index')}}">
-                    
-                    @csrf
-                    timestamp:{{$mLog->timestamp}}<br />
-                    price:{{$mLog->price}}<br />
-                    currency:{{$mLog->currency}}<br />
-                    currency:{{$mLog->method}}<br />
-                    statement:{{$mLog->statement}}<br />
-                    place:{{$mLog->place}}<br />
-                    address:{{$mLog->address}}<br />
-                    loaction:{{$mLog->location}}<br />
-                    <input type="submit" value="送信">
-                </form>
-                
+            <table class="table table-striped">
+                <thead>
+                    <tr><th scope="col">Date and Time</th><th scope="col">Price</th><th scope="col">Currency</th><th scope="col">Method</th><th scope="col">Statement</th><th scope="col">Place</th><th scope="col">Address</th><th scope="col">Location</th></tr>
+                </thead>
+                <tbody>
+                    @foreach ($list as $data)
+                        <tr><td>{{ $data->usedTime }}</td><td>{{ $data->price }}</td><td>{{ $data->currency }}</td><td>{{ $data->method }}</td><td>{{ $data->statement }}</td><td>{{ $data->place }}</td><td>{{ $data->address }}</td><td>{{ $data->location }}</td></tr>
+                    @endforeach
+                </tbody>
+                </table>
             </div>
 
         </div>
