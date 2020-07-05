@@ -68,6 +68,11 @@ class MLogController extends Controller
 
     public function list(Request $request) {
 
-      return view('list');
+      $mLogList = MLog::orderBy('created_at', 'asc')->get();
+
+      //ビューの表示
+      // return view('testView', compact('mLog'));
+      return view('testView', ['list' => $mLogList]);
+      // return view('list');
     }
 }

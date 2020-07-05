@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('input');
+Route::get('/list'  , 'MLogController@list');
 
 // Auth::routes();
 
