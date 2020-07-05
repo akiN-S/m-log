@@ -61,8 +61,8 @@
 
                             <div class="col-md-2 col-3">
                                 <select name="method" class=" custom-select" required>
-                                    @foreach(config('input.currency') as $key => $currency)
-                                    <option value="{{ $key }}" class="text-sm-right">{{ $currency['label'] }}</option>
+                                    @foreach(config('input.method') as $key => $method)
+                                    <option value="{{ $key }}" class="text-sm-right">{{ $method['label'] }}</option>
                                     @endforeach
                                 </select>
                             </div>

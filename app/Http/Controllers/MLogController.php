@@ -96,7 +96,7 @@ class MLogController extends Controller
                   "", // sorePlace
                   "", // place
                   "", // time
-                  $row->method,
+                  $row->methodId,
                   $row->address,
               ];
               mb_convert_variables('SJIS-win', 'UTF-8', $csv); //文字化け対策
