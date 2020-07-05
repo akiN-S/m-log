@@ -34,3 +34,4 @@ Route::get('/login/{social}', 'Auth\LoginController@socialLogin')->where('social
 Route::get('/login/{social}/callback', 'Auth\LoginController@handleProviderCallback')->where('social', 'facebook');
 
 Route::post('/MLog/input'  , 'MLogController@input');
+Route::post('/MLog/update'  , 'MLogController@update');

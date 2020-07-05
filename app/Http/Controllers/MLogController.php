@@ -29,7 +29,6 @@ class MLogController extends Controller
         'price' => 'required|max:5',
       ]);
       
-      // var_dump($mLog); //debug
 
       $mLog = new MLog;
       $mLog->userId = Auth::id();
@@ -44,23 +43,79 @@ class MLogController extends Controller
       $mLog-> save();
 
       $mLogList = MLog::orderBy('created_at', 'asc')->get();
+      // var_dump($mLogList); //debug
 
       //ビューの表示
       // return view('testView', compact('mLog'));
-      return view('testView', ['list' => $mLogList]);
+      return view('list', ['list' => $mLogList]); 
 
     }
     
+    // public function update(Request $request) {
+    //   //セッションから取得
+    //   $article = $request->session()->get('article');
+      
+    //   //DBの更新
+    //   $article->save();
+      
+    //   //ビューの表示
+    //   return redirect('test/complete');
+    // }
+
     public function update(Request $request) {
-      //セッションから取得
-      $article = $request->session()->get('article');
+
+      //入力値の取得
+      $editChecked = ($request->all()["edit"]);
+      $btnMode = ($request->all()["btnMode"]);
+
+      // var_dump($request->all());
+      if ($btnMode == "CSV"){
+        // $mLogResList = MLog::find($editChecked); // DBからID指定されたデータを取得
+        $mLogResList = MLog::orderBy('created_at', 'asc')->get(); // 全件取得
+        
+        // CSV出力用意
+        $headers = [ //ヘッダー情報
+          'Content-type' => 'text/csv',
+          'Content-Disposition' => 'attachment; filename=csvexport.csv',
+          'Pragma' => 'no-cache',
+          'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
+          'Expires' => '0',
+        ];
+
+        $callback = function() use ($mLogResList)
+        {
+          $createCsvFile = fopen('php://output', 'w'); //ファイル作成
+
+          foreach ($mLogResList as $row) {  //データを1行ずつ回す
+              $csv = [//オブジェクトなので -> で取得
+                  $row->usedTime,
+                  "", // puls
+                  $row->price,
+                  $row->statement,
+                  $row->place,
+                  "", // sorePlace
+                  "", // place
+                  "", // time
+                  $row->method,
+                  $row->address,
+              ];
+              mb_convert_variables('SJIS-win', 'UTF-8', $csv); //文字化け対策
+
+              fputcsv($createCsvFile, $csv); //ファイルに追記する
+          }
+          fclose($createCsvFile); //ファイル閉じる
+        };
       
-      //DBの更新
-      $article->save();
-      
-      //ビューの表示
-      return redirect('test/complete');
+        return response()->stream($callback, 200, $headers); //ここで実行
+        // return view('testView', ['list' => $mLogResList]);
+      }elseif ($btnMode == "Delete"){
+
+        return view('testView');
+      }
     }
+
+
+
     
     public function complete(Request $request) {
       return view('complete');
@@ -72,7 +127,7 @@ class MLogController extends Controller
 
       //ビューの表示
       // return view('testView', compact('mLog'));
-      return view('testView', ['list' => $mLogList]);
+      return view('list', ['list' => $mLogList]);
       // return view('list');
     }
 }
