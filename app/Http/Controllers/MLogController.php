@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\MLog;
+use App\Lib\MyFuncs;
 
 class MLogController extends Controller
 {
@@ -17,7 +18,7 @@ class MLogController extends Controller
     // public function input() {
     //   return view('input');
     // }
-    
+      
     public function input(Request $request) {
       //入力値の取得
       $mLogReq = new MLog($request->all());
@@ -35,14 +36,15 @@ class MLogController extends Controller
       $mLog->currency = $request->currency;
       // $mLog->usedTime = $request->usedTime; //TBC
       $mLog->price = $request->price;
-      $mLog->methodId = $request->method; // TBC
+      $mLog->methodId = $request->method;
       $mLog->statement = $request->statement;
       $mLog->place = $request->place;
       $mLog->address = $request->address;
       $mLog->location = $request->location;
       $mLog-> save();
 
-      $mLogList = MLog::orderBy('created_at', 'asc')->get();
+      
+      $mLogList = MyFuncs::getMlogList(Auth::id()); // ログインIDに紐づくデータを取得
       // var_dump($mLogList); //debug
 
       //ビューの表示
@@ -71,7 +73,8 @@ class MLogController extends Controller
       // var_dump($request->all());
       if ($btnMode == "CSV"){
         // $mLogResList = MLog::find($editChecked); // DBからID指定されたデータを取得
-        $mLogResList = MLog::orderBy('created_at', 'asc')->get(); // 全件取得
+        $mLogResList = MyFuncs::getMlogList(Auth::id()); // ログインIDに紐づくデータを取得
+        
         
         // CSV出力用意
         $headers = [ //ヘッダー情報
@@ -96,7 +99,7 @@ class MLogController extends Controller
                   "", // sorePlace
                   "", // place
                   "", // time
-                  $row->methodId,
+                  $row->method,
                   $row->address,
               ];
               mb_convert_variables('SJIS-win', 'UTF-8', $csv); //文字化け対策
@@ -113,9 +116,6 @@ class MLogController extends Controller
         return view('testView');
       }
     }
-
-
-
     
     public function complete(Request $request) {
       return view('complete');
@@ -123,11 +123,14 @@ class MLogController extends Controller
 
     public function list(Request $request) {
 
-      $mLogList = MLog::orderBy('created_at', 'asc')->get();
+      // $mLogList = MLog::orderBy('created_at', 'asc')->get();
+      $mLogList = MyFuncs::getMlogList(Auth::id()); // ログインIDに紐づくデータを取得
 
       //ビューの表示
       // return view('testView', compact('mLog'));
       return view('list', ['list' => $mLogList]);
       // return view('list');
     }
+
+
 }

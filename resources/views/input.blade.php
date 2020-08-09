@@ -61,8 +61,8 @@
 
                             <div class="col-md-2 col-3">
                                 <select name="method" class=" custom-select" required>
-                                    @foreach(config('input.method') as $key => $method)
-                                    <option value="{{ $key }}" class="text-sm-right">{{ $method['label'] }}</option>
+                                    @foreach ($methodsLsist as $data)
+                                    <option value="{{ $data->id }}" class="text-sm-right">{{ $data->method }}</option>
                                     @endforeach
                                 </select>
                             </div>

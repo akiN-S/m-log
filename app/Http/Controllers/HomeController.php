@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use App\Method;
+use App\Lib\MyFuncs;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('input');
+        $methodsLsist = MyFuncs::getMethodsList(Auth::id()); // ログインIDに紐づくデータを取得
+
+        //ビューの表示
+        // return view('testView', compact('mLog'));
+        return view('input',['methodsLsist' => $methodsLsist]);
     }
 }

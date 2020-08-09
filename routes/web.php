@@ -35,3 +35,7 @@ Route::get('/login/{social}/callback', 'Auth\LoginController@handleProviderCallb
 
 Route::post('/MLog/input'  , 'MLogController@input');
 Route::post('/MLog/update'  , 'MLogController@update');
+
+Route::get('/methods/list'  , 'MethodsController@list');
+Route::get('/methods/input'  , 'MethodsController@input');
+Route::post('/methods/register'  , 'MethodsController@register');
