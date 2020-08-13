@@ -18,7 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('input');
-Route::get('/list'  , 'MLogController@list');
+Route::get('/list'  , 'MLogController@list')->name('list');
 
 // Auth::routes();
 
@@ -36,6 +36,6 @@ Route::get('/login/{social}/callback', 'Auth\LoginController@handleProviderCallb
 Route::post('/MLog/input'  , 'MLogController@input');
 Route::post('/MLog/update'  , 'MLogController@update');
 
-Route::get('/methods/list'  , 'MethodsController@list');
-Route::get('/methods/input'  , 'MethodsController@input');
+Route::get('/methods/list'  , 'MethodsController@list')->name('methods.list');
+Route::get('/methods/input'  , 'MethodsController@input')->name('methods.input');
 Route::post('/methods/register'  , 'MethodsController@register');

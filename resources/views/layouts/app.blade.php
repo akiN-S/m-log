@@ -64,11 +64,16 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
+                                    <a href="{{ route('input') }}">Input</a> <br>
+                                    <a href="{{ route('list') }}">List</a> <br>
+                                    <a href="{{ route('methods.list') }}">Payment method - List</a> <br>
+                                    <a href="{{ route('methods.input') }}">Payment method - Input</a> <br>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                 </div>
+                            
                             </li>
                         @endguest
                     </ul>
