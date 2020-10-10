@@ -29,12 +29,11 @@ class MLogController extends Controller
         'currency' => 'required|max:5',
         'price' => 'required|max:5',
       ]);
-      
 
       $mLog = new MLog;
       $mLog->userId = Auth::id();
       $mLog->currency = $request->currency;
-      // $mLog->usedTime = $request->usedTime; //TBC
+      $mLog->usedTime = date("Y-m-d H:i:s", strtotime($request->timestampStr));
       $mLog->price = $request->price;
       $mLog->methodId = $request->method;
       $mLog->statement = $request->statement;
