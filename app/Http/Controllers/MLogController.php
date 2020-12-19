@@ -27,7 +27,7 @@ class MLogController extends Controller
       $this->validate($request, [
         'timestampStr' => 'required',
         'currency' => 'required|max:5',
-        'price' => 'required|max:5',
+        'price' => 'required|max:10',
       ]);
 
       $mLog = new MLog;
