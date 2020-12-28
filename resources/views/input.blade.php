@@ -66,7 +66,7 @@
                             <div class="col-md-2 col-3">
                                 <select name="method" class=" custom-select" required>
                                     @foreach ($methodsLsist as $data)
-                                        @if ( $loop->iteration == $MlogLastItem[0]->methodId)
+                                        @if ( $data->id == $MlogLastItem[0]->methodId)
                                             <option value="{{ $data->id }}" class="text-sm-right" selected>{{ $data->method }}</option>
                                         @else
                                             <option value="{{ $data->id }}" class="text-sm-right">{{ $data->method }}</option>
