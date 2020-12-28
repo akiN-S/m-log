@@ -26,10 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $methodsLsist = MyFuncs::getMethodsList(Auth::id()); // ログインIDに紐づくデータを取得
-
+        $methodsLsist = MyFuncs::getMethodsList(Auth::id()); // ログインIDに紐づく支払いmethodを取得
+        $MlogLastItem = MyFuncs::getMlogLastItem(Auth::id()); // ログインIDに紐づく最終アイテムを取得   
         //ビューの表示
         // return view('testView', compact('mLog'));
-        return view('input',['methodsLsist' => $methodsLsist]);
+        return view('input',['methodsLsist' => $methodsLsist, 'MlogLastItem' => $MlogLastItem]);
     }
 }

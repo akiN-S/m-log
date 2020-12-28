@@ -54,7 +54,11 @@
                             <div class="col-md-2 col-3">
                                 <select name="currency" class=" custom-select" required>
                                     @foreach(config('input.currency') as $key => $currency)
-                                    <option value="{{ $key }}" class="text-sm-right">{{ $currency['label'] }}</option>
+                                        @if ( $loop->iteration == $MlogLastItem[0]->currency)
+                                            <option value="{{ $key }}" class="text-sm-right" selected>{{ $currency['label'] }}</option>
+                                        @else
+                                            <option value="{{ $key }}" class="text-sm-right">{{ $currency['label'] }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -62,7 +66,12 @@
                             <div class="col-md-2 col-3">
                                 <select name="method" class=" custom-select" required>
                                     @foreach ($methodsLsist as $data)
-                                    <option value="{{ $data->id }}" class="text-sm-right">{{ $data->method }}</option>
+                                        @if ( $loop->iteration == $MlogLastItem[0]->methodId)
+                                            <option value="{{ $data->id }}" class="text-sm-right" selected>{{ $data->method }}</option>
+                                        @else
+                                            <option value="{{ $data->id }}" class="text-sm-right">{{ $data->method }}</option>
+                                        @endif
+                                        
                                     @endforeach
                                 </select>
                             </div>

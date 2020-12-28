@@ -8,7 +8,17 @@ class Myfuncs {
     public static function getMlogList($userId){
         $list =  Mlog::where('m_logs.userId', $userId)
         ->join('methods','m_logs.methodId','=','methods.id')
-        ->orderBy('m_logs.created_at', 'asc')
+        ->orderBy('m_logs.usedTime', 'asc')
+        ->get();
+        return $list;
+    }
+
+    public static function getMlogLastItem($userId){
+        // 最後に入力された内容を参考にするためにアイテムの最終行を1行だけ取得
+        $list =  Mlog::where('m_logs.userId', $userId)
+        ->join('methods','m_logs.methodId','=','methods.id')
+        ->orderBy('m_logs.usedTime', 'desc')
+        ->take(1)
         ->get();
         return $list;
     }
